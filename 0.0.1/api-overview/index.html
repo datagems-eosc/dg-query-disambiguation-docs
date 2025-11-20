@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://datagems-eosc.github.io/dg-query-disambiguation/0.0.1/api-overview/">
+        <link rel="canonical" href="https://datagems-eosc.github.io/dg-query-disambiguation-docs/0.0.1/api-overview/">
       
       
         <link rel="prev" href="../security/">
@@ -1191,7 +1191,7 @@
 <p>The Query Disambiguation service exposes a RESTful API for analyzing and disambiguating natural language queries.</p>
 <h2 id="base-url">Base URL<a class="headerlink" href="#base-url" title="Permanent link">&para;</a></h2>
 <p>The API is served from the root of the application. All endpoint paths are relative to the base URL where the service is deployed.</p>
-<p><strong>Base URL:</strong> <a href="https://datagems-eosc.github.io/dg-query-disambiguation-docs/">https://datagems-eosc.github.io/dg-query-disambiguation-docs/</a></p>
+<p><strong>Base URL:</strong> <a href="https://datagems-dev.scayle.es/dg-query-disambiguation/">https://datagems-dev.scayle.es/dg-query-disambiguation/</a></p>
 <h2 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h2>
 <p>Currently, the API endpoints do not require authentication. See the <a href="../security/">Security</a> page for more details. The <code>/health</code> endpoint is publicly accessible.</p>
 <hr />
@@ -1266,7 +1266,7 @@
 </li>
 <li>
 <p><strong>Example Request (curl):</strong>
-    <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;https://datagems-eosc.github.io/dg-query-disambiguation/query_disambiguation&quot;</span><span class="w"> </span><span class="se">\</span>
+    <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;https://datagems-dev.scayle.es/dg-query-disambiguation/query_disambiguation&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
 <span class="s1">    &quot;query&quot;: &quot;Show me the average temperature from some cities in Switzerland in the last month&quot;</span>
@@ -1278,7 +1278,7 @@
     <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
-    <span class="s2">&quot;https://datagems-eosc.github.io/dg-query-disambiguation/query_disambiguation&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;https://datagems-dev.scayle.es/dg-query-disambiguation/query_disambiguation&quot;</span><span class="p">,</span>
     <span class="n">json</span><span class="o">=</span><span class="p">{</span>
         <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;Show me the average temperature from some cities in Switzerland in the last month&quot;</span>
     <span class="p">}</span>

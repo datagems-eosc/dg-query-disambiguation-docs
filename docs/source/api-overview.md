@@ -6,7 +6,7 @@ The Query Disambiguation service exposes a RESTful API for analyzing and disambi
 
 The API is served from the root of the application. All endpoint paths are relative to the base URL where the service is deployed.
 
-**Base URL:** [https://datagems-eosc.github.io/dg-query-disambiguation-docs/](https://datagems-eosc.github.io/dg-query-disambiguation-docs/)
+**Base URL:** [https://datagems-dev.scayle.es/dg-query-disambiguation/](https://datagems-dev.scayle.es/dg-query-disambiguation/)
 
 ## Authentication
 
@@ -84,7 +84,7 @@ Analyzes a natural language query for ambiguity and uncertainty, providing gener
 
 *   **Example Request (curl):**
     ```bash
-    curl -X POST "https://datagems-eosc.github.io/dg-query-disambiguation/query_disambiguation" \
+    curl -X POST "https://datagems-dev.scayle.es/dg-query-disambiguation/query_disambiguation" \
       -H "Content-Type: application/json" \
       -d '{
         "query": "Show me the average temperature from some cities in Switzerland in the last month"
@@ -96,7 +96,7 @@ Analyzes a natural language query for ambiguity and uncertainty, providing gener
     import requests
 
     response = requests.post(
-        "https://datagems-eosc.github.io/dg-query-disambiguation/query_disambiguation",
+        "https://datagems-dev.scayle.es/dg-query-disambiguation/query_disambiguation",
         json={
             "query": "Show me the average temperature from some cities in Switzerland in the last month"
         }

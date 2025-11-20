@@ -214,13 +214,13 @@ docker run --env-file .env -p 8080:8080 dg-query-disambiguation
 1. **Run health check**:
 
 ```bash
-curl https://datagems-eosc.github.io/dg-query-disambiguation/health
+curl https://datagems-dev.scayle.es/health
 ```
 
 2. **Test an endpoint**:
 
 ```bash
-curl -X POST "https://datagems-eosc.github.io/dg-query-disambiguation/query_disambiguation" \
+curl -X POST "https://datagems-dev.scayle.es/dg-query-disambiguation/query_disambiguation" \
   -H "Content-Type: application/json" \
   -d '{
     "query": "Show me the data from that place last month"
@@ -229,8 +229,8 @@ curl -X POST "https://datagems-eosc.github.io/dg-query-disambiguation/query_disa
 
 3. **View API documentation**:
 
-- Swagger UI: https://datagems-eosc.github.io/dg-query-disambiguation/swagger
-- ReDoc: https://datagems-eosc.github.io/dg-query-disambiguation/redoc
+- Swagger UI: https://datagems-dev.scayle.es/dg-query-disambiguation/swagger
+- ReDoc: https://datagems-dev.scayle.es/dg-query-disambiguation/redoc
 
 ### Code Style
 

@@ -1684,12 +1684,12 @@ docker<span class="w"> </span>run<span class="w"> </span>--env-file<span class="
 <ol>
 <li><strong>Run health check</strong>:</li>
 </ol>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://localhost:8080/health
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>https://datagems-eosc.github.io/dg-query-disambiguation/health
 </code></pre></div>
 <ol>
 <li><strong>Test an endpoint</strong>:</li>
 </ol>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;http://localhost:8080/query_disambiguation&quot;</span><span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;https://datagems-eosc.github.io/dg-query-disambiguation/query_disambiguation&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
 <span class="s1">    &quot;query&quot;: &quot;Show me the data from that place last month&quot;</span>
@@ -1700,9 +1700,9 @@ docker<span class="w"> </span>run<span class="w"> </span>--env-file<span class="
 <p><strong>View API documentation</strong>:</p>
 </li>
 <li>
-<p>Swagger UI: http://localhost:8080/swagger</p>
+<p>Swagger UI: https://datagems-eosc.github.io/dg-query-disambiguation/swagger</p>
 </li>
-<li>ReDoc: http://localhost:8080/redoc</li>
+<li>ReDoc: https://datagems-eosc.github.io/dg-query-disambiguation/redoc</li>
 </ol>
 <h3 id="code-style">Code Style<a class="headerlink" href="#code-style" title="Permanent link">&para;</a></h3>
 <ul>

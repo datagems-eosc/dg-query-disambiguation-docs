@@ -106,7 +106,7 @@ When making API requests, always check the HTTP status code:
 import requests
 
 response = requests.post(
-    "http://localhost:8000/query_disambiguation",
+    "https://datagems-eosc.github.io/dg-query-disambiguation/query_disambiguation",
     json={"query": "test query"}
 )
 

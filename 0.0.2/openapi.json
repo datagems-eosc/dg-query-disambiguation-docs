@@ -1,0 +1,318 @@
+{
+  "components": {
+    "schemas": {
+      "AmbiguousPart": {
+        "description": "Represents an ambiguous part of the query.",
+        "properties": {
+          "ambiguity_type": {
+            "description": "Type of ambiguity (e.g., 'temporal', 'spatial', 'entity', 'scope')",
+            "title": "Ambiguity Type",
+            "type": "string"
+          },
+          "original_text": {
+            "description": "The ambiguous text from the original query",
+            "title": "Original Text",
+            "type": "string"
+          },
+          "reason": {
+            "description": "Explanation of why this part is ambiguous",
+            "title": "Reason",
+            "type": "string"
+          },
+          "rephrased_options": {
+            "description": "List of replacement phrases for the original_text (not full query rephrases, just the replacement text)",
+            "items": {
+              "type": "string"
+            },
+            "title": "Rephrased Options",
+            "type": "array"
+          }
+        },
+        "required": [
+          "original_text",
+          "ambiguity_type",
+          "reason",
+          "rephrased_options"
+        ],
+        "title": "AmbiguousPart",
+        "type": "object"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "QueryDisambiguationRequest": {
+        "description": "Request schema for query disambiguation endpoint.",
+        "example": {
+          "query": "Show me the average temperature from some cities in Switzerland in the last month"
+        },
+        "properties": {
+          "current_datetime": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Current date and time string. If not provided, will use the current system time.",
+            "title": "Current Datetime"
+          },
+          "query": {
+            "description": "The natural language query to analyze for ambiguity",
+            "maxLength": 10000,
+            "minLength": 1,
+            "title": "Query",
+            "type": "string"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "title": "QueryDisambiguationRequest",
+        "type": "object"
+      },
+      "QueryDisambiguationResponse": {
+        "description": "Response schema for query disambiguation endpoint.",
+        "example": {
+          "result": {
+            "ambiguous_parts": [
+              {
+                "ambiguity_type": "spatial",
+                "original_text": "that place",
+                "reason": "Vague reference without context",
+                "rephrased_options": [
+                  "New York",
+                  "the headquarters"
+                ]
+              }
+            ],
+            "general_notes": [
+              {
+                "aspect": "spatial",
+                "description": "The query refers to 'that place' without specifying a location.",
+                "severity": "high"
+              }
+            ],
+            "overall_clarity": "low",
+            "suggested_queries": [
+              "Show me the data from New York last month"
+            ]
+          }
+        },
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/QueryDisambiguationResult",
+            "description": "The disambiguation analysis result"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "title": "QueryDisambiguationResponse",
+        "type": "object"
+      },
+      "QueryDisambiguationResult": {
+        "description": "Result of query disambiguation analysis.",
+        "properties": {
+          "ambiguous_parts": {
+            "description": "List of ambiguous parts found in the query with rephrased options and reasons",
+            "items": {
+              "$ref": "#/components/schemas/AmbiguousPart"
+            },
+            "title": "Ambiguous Parts",
+            "type": "array"
+          },
+          "general_notes": {
+            "description": "General notes about uncertainty and unclear parts in the query, especially spatial and temporal information",
+            "items": {
+              "$ref": "#/components/schemas/UncertaintyNote"
+            },
+            "title": "General Notes",
+            "type": "array"
+          },
+          "overall_clarity": {
+            "description": "Overall clarity level: 'low' (very unclear), 'medium' (somewhat clear), or 'high' (very clear)",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "title": "Overall Clarity",
+            "type": "string"
+          },
+          "suggested_queries": {
+            "description": "List of complete rephrased queries based on all rephrased_options from ambiguous_parts",
+            "items": {
+              "type": "string"
+            },
+            "title": "Suggested Queries",
+            "type": "array"
+          }
+        },
+        "required": [
+          "general_notes",
+          "ambiguous_parts",
+          "overall_clarity",
+          "suggested_queries"
+        ],
+        "title": "QueryDisambiguationResult",
+        "type": "object"
+      },
+      "UncertaintyNote": {
+        "description": "Represents a note about uncertainty or unclear information.",
+        "properties": {
+          "aspect": {
+            "description": "The aspect that is uncertain (e.g., 'temporal', 'spatial', 'scope', 'entity')",
+            "title": "Aspect",
+            "type": "string"
+          },
+          "description": {
+            "description": "Description of the uncertainty or unclear information",
+            "title": "Description",
+            "type": "string"
+          },
+          "severity": {
+            "description": "Severity level: 'low', 'medium', or 'high'",
+            "title": "Severity",
+            "type": "string"
+          }
+        },
+        "required": [
+          "aspect",
+          "description",
+          "severity"
+        ],
+        "title": "UncertaintyNote",
+        "type": "object"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "description": "DataGEMS API for analyzing and disambiguating natural language queries",
+    "title": "Query Disambiguation Service",
+    "version": "0.0.1"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/": {
+      "get": {
+        "description": "Root endpoint.",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Root"
+      }
+    },
+    "/health": {
+      "get": {
+        "description": "Health check endpoint.",
+        "operationId": "health_check_health_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Health Check"
+      }
+    },
+    "/query_disambiguation": {
+      "post": {
+        "description": "Analyzes a natural language query for ambiguity and uncertainty, providing general notes, ambiguous parts with rephrased options, overall clarity assessment, and suggested complete queries.",
+        "operationId": "query_disambiguation_query_disambiguation_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryDisambiguationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryDisambiguationResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Disambiguate a natural language query",
+        "tags": [
+          "Query Disambiguation"
+        ]
+      }
+    }
+  }
+}
